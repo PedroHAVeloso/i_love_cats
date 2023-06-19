@@ -10,9 +10,11 @@ class ILoveCatsApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.black,
+        scaffoldBackgroundColor: AppColors.white,
       ),
-      home: const SplashPage(isNextPage: true,),
+      home: const SplashPage(
+        isNextPage: true,
+      ),
     );
   }
 }

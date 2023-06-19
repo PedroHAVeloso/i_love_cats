@@ -3,169 +3,214 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:i_love_cats/view/constants/app_colors.dart';
 import 'package:i_love_cats/view/pages/generate_cat_image_page.dart';
+import 'package:i_love_cats/view/widgets/appbar.dart';
+import 'package:i_love_cats/view/widgets/drawer.dart';
+import 'package:i_love_cats/view/widgets/gradient.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final scaffoldState = GlobalKey<ScaffoldState>();
     return SafeArea(
       child: Scaffold(
+        key: scaffoldState,
+        appBar: AppBarWidget(
+          isReturnButton: false,
+          scaffoldState: scaffoldState,
+        ),
         body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'Com o ',
-                      style: GoogleFonts.poppins(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 36.0,
+          padding: const EdgeInsets.only(
+            left: 20.0,
+            right: 20.0,
+            bottom: 20.0,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  gradient: AppColors.gradient,
+                  borderRadius: BorderRadius.circular(34.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SvgPicture.asset('assets/images/priority_high.svg'),
+                          GradientWidget(
+                            widget: SizedBox(
+                              width: 245.0,
+                              child: RichText(
+                                text: TextSpan(
+                                  text: 'Não compre, ',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 18.0,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: 'adote.\n',
+                                      style: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    const TextSpan(
+                                      text: 'Um gato de rua pode estar '
+                                          'esperando por amor.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            gradient: AppColors.gradient,
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(
-                      width: 6.0,
-                    ),
-                    SvgPicture.asset(
-                      'assets/images/colour_logo.svg',
-                      width: 140.0,
-                    ),
-                  ],
-                ),
-                Text(
-                  'você pode:',
-                  style: GoogleFonts.poppins(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 36.0,
                   ),
                 ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                Text(
-                  'Gerar a foto de um gatinho aleatório.\n'
-                  'Gerar um pequeno fato sobre gatinhos a cada 1 hora.\n'
-                  'No momento, só.',
-                  style: GoogleFonts.poppins(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22.0,
-                  ),
-                ),
-                const SizedBox(
-                  height: 30.0,
-                ),
-                SizedBox(
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Expanded(
+                child: Container(
                   width: double.infinity,
-                  height: 65.0,
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const GenerateCatImagePage(),
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(0.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                    ),
-                    child: Ink(
-                      height: double.infinity,
-                      width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: AppColors.gradient,
+                    borderRadius: BorderRadius.circular(34.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Container(
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [
-                            AppColors.green,
-                            AppColors.pink,
-                            AppColors.cyan,
-                            AppColors.yellow,
-                            AppColors.blue,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
-                      child: Center(
-                        child: Text(
-                          'Gerar foto',
-                          style: GoogleFonts.poppins(
-                            color: AppColors.black,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 26.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Center(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: [
+                                GradientWidget(
+                                  widget: Text(
+                                    'Fato gatástico do momento:',
+                                    style: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                  gradient: AppColors.gradient,
+                                ),
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                Text(
+                                  '“Lorem ipsum dolor sit amet, consectetur '
+                                  'adipiscing elit. Etiam eget ligula eu lectus '
+                                  'lobortis condimentum. Aliquam nonummy auctor '
+                                  'massa. Pellentesque habitant morbi tristique '
+                                  'senectus et netus et malesuada fames ac turpis '
+                                  'egestas.”',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.black,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 12.0,
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  gradient: AppColors.gradient,
+                  borderRadius: BorderRadius.circular(34.0),
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 65.0,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(0.0),
-                      backgroundColor: AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(30.0),
                     ),
-                    child: Center(
-                      child: Text(
-                        'Gerar fato',
-                        style: GoogleFonts.poppins(
-                          color: AppColors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 26.0,
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 260.0,
+                            child: GradientWidget(
+                              widget: Text(
+                                'Gere imagens aleatórias de gatos.',
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                              gradient: AppColors.gradient,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const GenerateCatImagePage(),
+                              ),
+                            ),
+                            child: Container(
+                              height: 60.0,
+                              decoration: BoxDecoration(
+                                gradient: AppColors.gradient,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Gerar imagem',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.white,
+                                    fontSize: 24.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 12.0,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 65.0,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.all(0.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      side: const BorderSide(
-                        color: AppColors.white,
-                        width: 3.0,
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Configurações',
-                        style: GoogleFonts.poppins(
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 26.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+        drawer: DrawerWidget(),
       ),
     );
   }

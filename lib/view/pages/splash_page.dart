@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:i_love_cats/view/constants/app_colors.dart';
 import 'package:i_love_cats/view/pages/home_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -37,10 +38,15 @@ class _SplashPageState extends State<SplashPage> {
       textDirection: TextDirection.ltr,
       child: SafeArea(
         child: Scaffold(
-          body: Center(
-            child: FractionallySizedBox(
-              widthFactor: 0.6,
-              child: SvgPicture.asset('assets/images/colour_logo.svg'),
+          body: Container(
+            decoration: const BoxDecoration(
+              gradient: AppColors.gradient,
+            ),
+            child: Center(
+              child: FractionallySizedBox(
+                widthFactor: 0.6,
+                child: SvgPicture.asset('assets/images/light_logo.svg'),
+              ),
             ),
           ),
         ),
