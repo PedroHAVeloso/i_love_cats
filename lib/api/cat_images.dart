@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
@@ -8,22 +9,26 @@ class CatImages {
   static Future<String?> generateCatImage() async {
     log('CatImages: Start');
     try {
-      // log('CatImages: Request image');
-
-      // final http.Response response = await http.get(
-      //   catImageGenerator,
+      // await Future.delayed(
+      //   Duration(seconds: 1),
       // );
+      log('CatImages: Request image');
 
-      // log('CatImages: Request successful');
+      final http.Response response = await http.get(
+        catImageGenerator,
+      );
 
-      // Map<String, dynamic> responseBody = jsonDecode(response.body);
+      log('CatImages: Request successful');
 
-      // String imageUrl = 'https://cataas.com';
-      // imageUrl += responseBody['url'];
+      Map<String, dynamic> responseBody = jsonDecode(response.body);
 
-      // log('CatImages: URL = $imageUrl');
-      // return imageUrl;
-      return 'https://cataas.com/cat/jPOmrcnG9RZ7FRqn';
+      String imageUrl = 'https://cataas.com';
+      imageUrl += responseBody['url'];
+
+      log('CatImages: URL = $imageUrl');
+      return imageUrl;
+      // return 'https://cataas.com/cat/jPOmrcnG9RZ7FRqn';
+      // return 'https://cataas.com/cat/t688AA66dwBenAX0';
     } catch (_) {
       log('CatImages: ERROR $_');
 
