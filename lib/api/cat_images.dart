@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class CatImages {
   static Uri catImageGenerator = Uri.parse('https://cataas.com/cat?json=true');
 
-  static Future<String?> generateCatImage() async {
+  static Future<String> generateCatImage() async {
     log('CatImages: Start');
     try {
       // await Future.delayed(
@@ -31,8 +31,7 @@ class CatImages {
       // return 'https://cataas.com/cat/t688AA66dwBenAX0';
     } catch (_) {
       log('CatImages: ERROR $_');
-
-      return null;
+      return "";
     }
   }
 }
